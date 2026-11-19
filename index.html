@@ -871,7 +871,8 @@ function frame(t){
     const dark = L.light.some(s => probe >= s.top && probe < s.top + s.h);
     if (dark !== navDark){ nav.classList.toggle('dark', dark); navDark = dark; }
 
-    if (!reduce){
+    // parallax decorativo só no computador: no celular o scroll roda fora do JS e o efeito fica atrasado
+    if (!reduce && fine){
       if (y < L.hero.h) speedEls.forEach(el => { el.style.transform = `translate3d(0,${(y*+el.dataset.speed).toFixed(1)}px,0)`; });
       parEls.forEach((el,i) => {
         const r = L.par[i], top = r.top - y;
